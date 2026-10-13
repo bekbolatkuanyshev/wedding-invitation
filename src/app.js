@@ -517,11 +517,56 @@
     }
   }
 
+  /* -------------------------------------------------- opening envelope */
+  // A full-screen envelope shown on arrival. It lives outside #app so that switching
+  // language (which re-renders #app) never brings it back. Turn it off in config.js: intro: false.
+  function setupIntro() {
+    if (C.intro === false) return;
+    if (window.location.hash && window.location.hash !== '#top') return;   // shared deep links go straight in
+    var t = T(), n = names();
+    var initials = Array.from(n.first)[0] + '&amp;' + Array.from(n.second)[0];
+    var el = document.createElement('div');
+    el.className = 'open';
+    el.id = 'open';
+    el.setAttribute('role', 'dialog');
+    el.setAttribute('aria-modal', 'true');
+    el.setAttribute('aria-label', t.intro.aria);
+    el.innerHTML =
+      '<div class="open-in">' +
+        '<button type="button" class="env" aria-label="' + esc(t.intro.aria) + '">' +
+          '<span class="env-back"></span>' +
+          '<span class="env-card"><small>' + esc(t.intro.kicker) + '</small><b>' + esc(n.first) + '</b><i>&amp;</i><b>' + esc(n.second) + '</b><em>' + esc(longDate()) + '</em></span>' +
+          '<span class="env-front"></span>' +
+          '<span class="env-flap"></span>' +
+          '<span class="env-seal" aria-hidden="true"><span>' + initials + '</span></span>' +
+        '</button>' +
+        '<p class="open-hint">' + esc(t.intro.hint) + '</p>' +
+      '</div>';
+    document.body.appendChild(el);
+    document.documentElement.classList.add('intro-lock');
+    root.setAttribute('inert', '');
+    window.scrollTo(0, 0);
+    var btn = el.querySelector('.env'), opened = false;
+    function leave() {
+      el.classList.add('is-leaving');
+      document.documentElement.classList.remove('intro-lock');
+      root.removeAttribute('inert');
+      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); window.scrollTo(0, 0); }, reduceMotion ? 250 : 1000);
+    }
+    btn.addEventListener('click', function () {
+      if (opened) return;
+      opened = true;
+      el.classList.add('is-open');
+      setTimeout(leave, reduceMotion ? 150 : 2400);
+    });
+  }
+
   /* --------------------------------------------------------------- init */
   function init() {
     root = document.getElementById('app');
     if (!root) return;
     render();
+    setupIntro();
     root.addEventListener('input', onInput);
     root.addEventListener('change', onInput);
     root.addEventListener('submit', onSubmit);

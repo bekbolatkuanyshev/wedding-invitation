@@ -25,6 +25,10 @@ window.WEDDING_CONFIG = {
     detect: true,              // false = always start in `default`
   },
 
+  /* ------------------------------------------------------------------ Intro */
+  // Opening envelope shown when the page loads. false = go straight to the invitation.
+  intro: true,
+
   /* ---------------------------------------------------------------- Sections */
   sections: {
     story: false,       // "Our story" - off until the couple's real story is added

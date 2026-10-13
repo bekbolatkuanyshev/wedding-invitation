@@ -419,3 +419,71 @@ textarea.input { resize: vertical; min-height: 6.5rem; }
   .rv { opacity: 1; transform: none; }
   .rings circle { stroke-dashoffset: 0; }
 }
+
+/* ---------------------------------------------------------------- opening envelope */
+html.intro-lock { overflow: hidden; }
+html.intro-lock .hero-media, html.intro-lock .hero-line, html.intro-lock .hero-names .nm > span,
+html.intro-lock .hero-names .amp, html.intro-lock .hero-meta, html.intro-lock .scroll { animation-play-state: paused; }
+
+.open {
+  position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.5rem;
+  background: radial-gradient(ellipse at 50% 38%, #6f7a65 0%, #55604b 52%, #424b39 100%);
+  transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), visibility 0s 0.9s;
+}
+.open.is-leaving { opacity: 0; transform: scale(1.05); visibility: hidden; pointer-events: none; }
+.open-in { display: grid; justify-items: center; gap: 2.25rem; width: 100%; }
+
+.env {
+  --w: min(86vw, 27rem);
+  position: relative; display: block; width: var(--w); aspect-ratio: 3 / 2; padding: 0; border: 0; background: none;
+  cursor: pointer; perspective: 1400px; transform-style: preserve-3d; -webkit-tap-highlight-color: transparent;
+  animation: env-float 5s ease-in-out infinite;
+}
+.env::before { content: ''; position: absolute; left: 6%; right: 6%; bottom: -9%; height: 14%; background: rgba(15, 20, 10, 0.5); filter: blur(18px); border-radius: 50%; }
+.env:focus-visible { outline: 2px solid #F8F5EF; outline-offset: 10px; }
+.env > span { position: absolute; }
+.env-back { inset: 0; background: #ddd3bf; border-radius: 3px; z-index: 0; }
+.env-card {
+  left: 6%; right: 6%; top: 6%; height: 88%; z-index: 1;
+  display: grid; align-content: start; justify-items: center; gap: 0.1rem; padding: 1rem 0.75rem 0;
+  background: #fbf8f1; color: #2f3628; border-radius: 2px; text-align: center;
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  transition: transform 1.05s var(--ease) 0.95s;
+}
+.env-card small { font: 400 0.6rem/1.4 var(--font-sans); letter-spacing: 0.26em; text-transform: uppercase; color: #6b705f; }
+.env-card b { font: 300 clamp(1.5rem, 7.2vw, 2.2rem)/1 var(--font-display); font-weight: 400; }
+.env-card i { font: italic 300 1.1rem/1 var(--font-display); color: #7b856c; }
+.env-card em { margin-top: 0.4rem; font: 400 0.62rem/1.4 var(--font-sans); letter-spacing: 0.22em; text-transform: uppercase; font-style: normal; color: #6b705f; }
+.env-front { inset: 0; z-index: 2; background: linear-gradient(180deg, #f2ecde, #eae2d0); clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%); border-radius: 3px; }
+.env-flap {
+  left: 0; right: 0; top: 0; height: 56%; z-index: 3; transform-origin: top center;
+  background: linear-gradient(180deg, #f7f2e6, #ece4d2); clip-path: polygon(0 0, 100% 0, 50% 100%);
+  transition: transform 0.95s var(--ease) 0.25s, z-index 0s linear 0.65s;
+}
+.env-seal {
+  left: 50%; top: 56%; z-index: 4; width: clamp(3.6rem, 17vw, 4.6rem); aspect-ratio: 1; translate: -50% -50%;
+  display: grid; place-items: center; border-radius: 50%; color: #f6ece0;
+  background: radial-gradient(circle at 35% 30%, #c0806c 0%, #9c5946 55%, #7d4333 100%);
+  box-shadow: 0 6px 14px rgba(40, 18, 10, 0.4), inset 0 -3px 6px rgba(60, 25, 15, 0.35), inset 0 2px 3px rgba(255, 220, 200, 0.35);
+  transition: transform 0.55s var(--ease), opacity 0.4s;
+  animation: seal-pulse 2.8s ease-in-out infinite;
+}
+.env-seal::before { content: ''; position: absolute; inset: 9%; border-radius: 50%; border: 1px solid rgba(255, 232, 215, 0.45); }
+.env-seal span { font: italic 400 clamp(1.05rem, 4.8vw, 1.35rem)/1 var(--font-display); letter-spacing: 0.02em; }
+.open-hint { margin: 0; color: #e6e9da; font: 400 0.72rem/1.4 var(--font-sans); letter-spacing: 0.26em; text-transform: uppercase; transition: opacity 0.4s; animation: fade-up 1s var(--ease) 0.5s both; }
+
+.open.is-open .env { animation: none; }
+.open.is-open .env-seal { transform: scale(0.5) rotate(-12deg); opacity: 0; animation: none; }
+.open.is-open .env-flap { transform: rotateX(180deg); z-index: 0; }
+.open.is-open .env-card { transform: translateY(-62%); }
+.open.is-open .open-hint { opacity: 0; }
+
+@keyframes env-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
+@keyframes seal-pulse { 0%, 100% { scale: 1; } 50% { scale: 1.06; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .open, .env, .env-seal, .open-hint { animation: none !important; }
+  .open { transition: opacity 0.25s linear, visibility 0s 0.25s; }
+  .open.is-leaving { transform: none; }
+  .env-flap, .env-card, .env-seal { transition: none; }
+}

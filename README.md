@@ -27,6 +27,7 @@ Edit **`src/config.js`**. Everything marked `// PLACEHOLDER` is demonstration co
 | Contacts | `contacts` |
 | Photos | `images` |
 | Languages | `languages` |
+| Opening envelope screen (set `false` to skip it) | `intro` |
 | Turn sections off (story, countdown, schedule, venue, dress code, RSVP) | `sections` |
 
 Interface wording (buttons, labels, errors) is in **`src/strings.js`**, one block per language.

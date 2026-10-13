@@ -17,6 +17,7 @@ window.WEDDING_STRINGS = {
     },
     nav: { skip: 'Skip to content', home: 'Back to top', language: 'Language', rsvp: 'RSVP' },
     hero: { scroll: 'Scroll to the invitation' },
+    intro: { kicker: 'Wedding invitation', hint: 'Tap to open', aria: 'Open the invitation' },
     invitation: { kicker: 'The invitation' },
     story: { kicker: 'Our story', title: 'How we got here' },
     countdown: {
@@ -111,6 +112,7 @@ window.WEDDING_STRINGS = {
     },
     nav: { skip: 'Перейти к содержимому', home: 'Наверх', language: 'Язык', rsvp: 'Ответить' },
     hero: { scroll: 'Прокрутите к приглашению' },
+    intro: { kicker: 'Свадебное приглашение', hint: 'Нажмите, чтобы открыть', aria: 'Открыть приглашение' },
     invitation: { kicker: 'Приглашение' },
     story: { kicker: 'Наша история', title: 'Как всё *началось*' },
     countdown: {
@@ -208,6 +210,7 @@ window.WEDDING_STRINGS = {
     },
     nav: { skip: 'Мазмұнға өту', home: 'Жоғарыға', language: 'Тіл', rsvp: 'Жауап беру' },
     hero: { scroll: 'Шақыруға қарай жылжытыңыз' },
+    intro: { kicker: 'Үйлену тойына шақыру', hint: 'Ашу үшін басыңыз', aria: 'Шақыруды ашу' },
     invitation: { kicker: 'Шақыру' },
     story: { kicker: 'Біздің тарихымыз', title: 'Бәрі қалай *басталды*' },
     countdown: {
