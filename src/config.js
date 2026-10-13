@@ -20,14 +20,14 @@ window.WEDDING_CONFIG = {
 
   /* ---------------------------------------------------------------- Language */
   languages: {
-    default: 'en',
+    default: 'ru',
     available: ['en', 'ru'],   // first-time visitors see their browser language if listed here
     detect: true,              // false = always start in `default`
   },
 
   /* ---------------------------------------------------------------- Sections */
   sections: {
-    story: true,        // "Our story"
+    story: false,       // "Our story" - off until the couple's real story is added
     countdown: true,
     schedule: true,
     venue: true,
@@ -37,9 +37,9 @@ window.WEDDING_CONFIG = {
 
   /* ------------------------------------------------------------------ Couple */
   couple: {                                            // PLACEHOLDER
-    first:  { en: 'Eleanor', ru: 'Элеонора' },
-    second: { en: 'Theo',    ru: 'Тео' },
-    hashtag: '#EleanorAndTheo',                        // PLACEHOLDER (use '' to hide)
+    first:  { en: 'Bekbolat', ru: 'Бекболат' },
+    second: { en: 'Madina',   ru: 'Мадина' },
+    hashtag: '',                                       // e.g. '#БекболатИМадина' ('' hides it)
   },
 
   /* ------------------------------------------------------------------- Event */
@@ -48,9 +48,9 @@ window.WEDDING_CONFIG = {
     // The countdown converts it using `timeZone`, so it is correct for every
     // visitor wherever they are. Use an IANA name such as 'Europe/Paris',
     // 'Asia/Almaty', 'America/New_York'.
-    start: '2027-06-19T16:00',                         // PLACEHOLDER
-    timeZone: 'Europe/Paris',                          // PLACEHOLDER
-    placeLabel: { en: 'Your City, Country', ru: 'Ваш город, страна' },  // PLACEHOLDER
+    start: '2027-03-20T16:00',                         // DATE confirmed; TIME 16:00 is a PLACEHOLDER
+    timeZone: 'Asia/Atyrau',                         // ASSUMED (UTC+5); confirm the venue city
+    placeLabel: { en: 'City, Kazakhstan', ru: 'Город, Казахстан' },  // PLACEHOLDER
   },
 
   /* ------------------------------------------------------------------ Images */
@@ -185,7 +185,7 @@ window.WEDDING_CONFIG = {
 
   /* -------------------------------------------------------------------- RSVP */
   rsvp: {
-    deadline: '2027-05-15',     // PLACEHOLDER  last day to reply (YYYY-MM-DD, venue time zone)
+    deadline: '2027-03-01',     // PLACEHOLDER  last day to reply (YYYY-MM-DD, venue time zone)
     maxGuests: 4,               // largest party one reply can cover
     // Where replies are sent. Leave '' until you connect a service: the form
     // will then say plainly that nothing was saved. See README, "Collecting
