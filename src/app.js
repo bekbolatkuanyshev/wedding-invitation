@@ -66,8 +66,29 @@
   function img(key) { return C.images[key] || ''; }
 
   function evFmt(opts) { return new Intl.DateTimeFormat(T().locale, Object.assign({ timeZone: C.event.timeZone }, opts)); }
-  function longDate() { return evFmt({ day: 'numeric', month: 'long', year: 'numeric' }).format(eventMs); }
-  function fullDate() { return evFmt({ weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' }).format(eventMs); }
+  // Day, month and year of an instant in the venue's time zone.
+  function ymd(ms) {
+    var p = {};
+    new Intl.DateTimeFormat('en-US', { timeZone: C.event.timeZone, year: 'numeric', month: 'numeric', day: 'numeric' })
+      .formatToParts(new Date(ms)).forEach(function (x) { p[x.type] = +x.value; });
+    return p;
+  }
+  // A language may ship its own month and weekday names (strings.js: months, weekdays,
+  // dateFormat), so dates look right even on browsers without that language's data.
+  function dateText(ms) {
+    var t = T();
+    if (t.months && t.dateFormat) {
+      var p = ymd(ms);
+      return fill(t.dateFormat, { d: p.day, month: t.months[p.month - 1], y: p.year });
+    }
+    return evFmt({ day: 'numeric', month: 'long', year: 'numeric' }).format(ms);
+  }
+  function weekdayText(ms) {
+    var t = T();
+    if (t.weekdays) { var p = ymd(ms); return t.weekdays[new Date(Date.UTC(p.year, p.month - 1, p.day)).getUTCDay()]; }
+    return evFmt({ weekday: 'long' }).format(ms);
+  }
+  function longDate() { return dateText(eventMs); }
   function startTime() { return evFmt({ hour: 'numeric', minute: '2-digit' }).format(eventMs); }
   function zoneName() {
     var p = evFmt({ timeZoneName: 'long' }).formatToParts(eventMs).filter(function (x) { return x.type === 'timeZoneName'; })[0];
@@ -99,7 +120,7 @@
       langs = '<div class="lang" role="group" aria-label="' + esc(t.nav.language) + '">' +
         C.languages.available.map(function (code) {
           var label = (S[code] && S[code].label) || code;
-          return '<button type="button" data-lang="' + esc(code) + '" lang="' + esc(code) + '" aria-pressed="' + (code === state.lang) + '" title="' + esc(label) + '">' + esc(code.toUpperCase()) + '</button>';
+          return '<button type="button" data-lang="' + esc(code) + '" lang="' + esc(code) + '" aria-pressed="' + (code === state.lang) + '" title="' + esc(label) + '">' + esc((S[code] && S[code].short) || code.toUpperCase()) + '</button>';
         }).join('') + '</div>';
     }
     var rsvp = C.sections.rsvp ? '<a class="bar-rsvp" href="#rsvp">' + esc(t.nav.rsvp) + '</a>' : '';
@@ -179,8 +200,9 @@
   function venue() {
     var t = T(), v = C.venue, urls = Lib.directionsUrls(v);
     var main = urls.twogis || urls.google;
+    var addrText = v.address ? tx(v.address) : (v.addressLines || []).join(', ');
     var day = evFmt({ day: 'numeric' }).format(eventMs);
-    var weekday = evFmt({ weekday: 'long' }).format(eventMs);
+    var weekday = weekdayText(eventMs);
     var sub = weekday + ', ' + fill(t.venue.startsAt, { time: startTime() });
     var pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
     var more = urls.twogis
@@ -194,7 +216,7 @@
       '<article class="vc rv" data-d="1"><div class="vc-ico" aria-hidden="true">' + pin + '</div>' +
         '<div class="vc-body"><p class="vc-label">' + esc(t.venue.kicker) + '</p>' +
         '<h2 class="vc-title">' + esc(tx(v.name)) + '</h2>' +
-        ((v.addressLines && v.addressLines.length) ? '<p class="vc-sub">' + v.addressLines.map(esc).join(', ') + '</p>' : '') +
+        (addrText ? '<p class="vc-sub">' + esc(addrText) + '</p>' : '') +
         '<a class="vc-link" href="' + esc(main) + '" target="_blank" rel="noopener">' + esc(urls.twogis ? t.venue.twogis : t.venue.openMap) + '</a>' + more + '</div></article>' +
     '</div></section>';
   }
@@ -272,7 +294,7 @@
   function rsvpInner() {
     var t = T().rsvp, r = state.rsvp;
     var closed = Lib.isPastDeadline(C.rsvp.deadline, C.event.timeZone, Date.now());
-    var deadline = C.rsvp.deadline ? fill(t.deadline, { date: new Intl.DateTimeFormat(T().locale, { day: 'numeric', month: 'long', year: 'numeric', timeZone: C.event.timeZone }).format(Lib.zonedToUtc(C.rsvp.deadline + 'T12:00', C.event.timeZone)) }) : '';
+    var deadline = C.rsvp.deadline ? fill(t.deadline, { date: dateText(Lib.zonedToUtc(C.rsvp.deadline + 'T12:00', C.event.timeZone)) }) : '';
     var main = r.status === 'success' ? rsvpSuccess() : closed ? '<p class="note">' + esc(t.closed) + '</p>' : rsvpForm();
     return '<div class="wrap rsvp-grid">' +
       '<div class="rsvp-intro rv"><p class="kicker">' + esc(t.kicker) + '</p><h2 class="h2" id="rsvp-h">' + rich(t.title) + '</h2>' +

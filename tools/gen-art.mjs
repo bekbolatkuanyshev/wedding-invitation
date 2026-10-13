@@ -96,25 +96,25 @@ const write = (name, content) => fs.writeFileSync(path.join(out, name), content)
   const W = 1600, H = 1000, cx = 800;
   seed = 11;
   const defs =
-    lin('sky', [[0, '#b9bfae'], [0.42, '#e6dccb'], [0.7, '#f1cfae'], [1, '#f6dcc0']]) +
+    lin('sky', [[0, '#c5ccbc'], [0.42, '#ebe3d3'], [0.7, '#f4d7ba'], [1, '#f8e2ca']]) +
     rad('sunglow', [[0, '#fff3dc', 0.95], [0.35, '#fbe0b8', 0.45], [1, '#fbe0b8', 0]]) +
-    rad('vig', [[0.55, '#000', 0], [1, '#14170f', 0.5]]) +
-    lin('hillA', [[0, '#a9b09a'], [1, '#98a088']]) +
-    lin('hillB', [[0, '#7f8a70'], [1, '#6e7a60']]) +
-    lin('hillC', [[0, '#566148'], [1, '#444d39']]) +
-    lin('hillD', [[0, '#3a4231'], [1, '#2b3225']]);
+    rad('vig', [[0.55, '#000', 0], [1, '#14170f', 0.3]]) +
+    lin('hillA', [[0, '#b8bfa9'], [1, '#a8b098']]) +
+    lin('hillB', [[0, '#939e83'], [1, '#848f74']]) +
+    lin('hillC', [[0, '#6e7a5e'], [1, '#5e6a50']]) +
+    lin('hillD', [[0, '#545f47'], [1, '#45513b']]);
   let b = `<rect width="${W}" height="${H}" fill="url(#sky)"/>`;
   b += `<circle cx="${cx}" cy="560" r="480" fill="url(#sunglow)"/>`;
   b += `<circle cx="${cx}" cy="560" r="96" fill="#fff6e6" opacity=".96"/>`;
   b += `<g filter="url(#b)" fill="#fbf1e0" opacity=".5"><ellipse cx="300" cy="300" rx="330" ry="26"/><ellipse cx="1320" cy="250" rx="300" ry="22"/><ellipse cx="1050" cy="400" rx="240" ry="16"/><ellipse cx="520" cy="470" rx="260" ry="14"/></g>`;
   b += hill(W, H, 640, 22, 0.004, 0.011, 'url(#hillA)');
   b += hill(W, H, 700, 26, 0.005, 0.013, 'url(#hillB)');
-  b += `<path d="${arch(cx, 860, 135, 372, 30)}" fill="#2d3427" fill-rule="evenodd"/>`;
+  b += `<path d="${arch(cx, 860, 135, 372, 30)}" fill="#404a36" fill-rule="evenodd"/>`;
   b += archGreens(cx, 860, 135, 372, 90);
   b += hill(W, H, 770, 20, 0.006, 0.016, 'url(#hillC)');
   b += hill(W, H, 840, 16, 0.008, 0.02, 'url(#hillD)');
-  b += grass(W, 900, 220, 28, 120, '#222a1c');
-  b += grass(W, 780, 90, 14, 46, '#4b5640', 1);
+  b += grass(W, 900, 220, 28, 120, '#36422e');
+  b += grass(W, 780, 90, 14, 46, '#5f6c51', 1);
   b += motes(W, H, 55);
   b += `<rect width="${W}" height="${H}" fill="url(#vig)"/>`;
   write('hero.svg', svg(W, H, defs, b, 'g1', 5));
@@ -244,20 +244,20 @@ const write = (name, content) => fs.writeFileSync(path.join(out, name), content)
   const W = 1600, H = 1000;
   seed = 71;
   const defs =
-    lin('sky', [[0, '#10130d'], [0.55, '#262d20'], [1, '#5a604a']]) +
+    lin('sky', [[0, '#63675d'], [0.55, '#78796b'], [1, '#99927a']]) +
     rad('moon', [[0, '#fff3dc', 0.55], [1, '#fff3dc', 0]]) +
-    lin('h1', [[0, '#3b4331'], [1, '#2a3123']]) + lin('h2', [[0, '#232a1d'], [1, '#161b12']]) +
+    lin('h1', [[0, '#6d755f'], [1, '#5d6551']]) + lin('h2', [[0, '#4e5943'], [1, '#323b2a']]) +
     rad('lit', [[0, '#ffdca0', 0.9], [1, '#ffdca0', 0]]);
   let b = `<rect width="${W}" height="${H}" fill="url(#sky)"/>`;
   for (let i = 0; i < 110; i++) b += `<circle cx="${n1(R(0, W))}" cy="${n1(R(0, 520))}" r="${n1(R(0.6, 1.8))}" fill="#fff6e6" opacity="${n1(R(0.2, 0.8))}"/>`;
   b += `<circle cx="1180" cy="250" r="300" fill="url(#moon)"/><circle cx="1180" cy="250" r="58" fill="#fff4e0" opacity=".95"/>`;
-  b += hill(W, H, 640, 24, 0.004, 0.011, '#4a5240');
+  b += hill(W, H, 640, 24, 0.004, 0.011, '#7e8671');
   b += hill(W, H, 720, 20, 0.005, 0.013, 'url(#h1)');
   b += `<circle cx="560" cy="700" r="170" fill="url(#lit)"/>`;
-  b += `<path d="${arch(560, 800, 100, 520, 22)}" fill="#161b12" fill-rule="evenodd"/>`;
+  b += `<path d="${arch(560, 800, 100, 520, 22)}" fill="#323b2a" fill-rule="evenodd"/>`;
   b += archGreens(560, 800, 100, 520, 60);
   b += hill(W, H, 810, 16, 0.007, 0.018, 'url(#h2)');
-  b += grass(W, 930, 200, 24, 100, '#0f130c');
+  b += grass(W, 930, 200, 24, 100, '#2f3827');
   for (let i = 0; i < 38; i++) b += `<circle cx="${n1(R(0, W))}" cy="${n1(R(560, 860))}" r="${n1(R(2, 4.2))}" fill="#ffdca0" opacity="${n1(R(0.35, 0.9))}" filter="url(#b2)"/>`;
   write('closing.svg', svg(W, H, defs, b, 'g7', 31, 0.2));
 }

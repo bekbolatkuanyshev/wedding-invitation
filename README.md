@@ -30,7 +30,7 @@ Edit **`src/config.js`**. Everything marked `// PLACEHOLDER` is demonstration co
 | Turn sections off (story, countdown, schedule, venue, dress code, RSVP) | `sections` |
 
 Interface wording (buttons, labels, errors) is in **`src/strings.js`**, one block per language.
-English and Russian are included. To add a language, add its code to `languages.available`,
+Kazakh, Russian and English are included. To add a language, add its code to `languages.available`,
 copy an existing block in `strings.js`, and add the code to each `{ en: …, ru: … }` text in `config.js`.
 
 The countdown reads `event.start` as local time **at the venue** and converts it with `event.timeZone`,

@@ -21,7 +21,7 @@ window.WEDDING_CONFIG = {
   /* ---------------------------------------------------------------- Language */
   languages: {
     default: 'ru',
-    available: ['en', 'ru'],   // first-time visitors see their browser language if listed here
+    available: ['kk', 'ru', 'en'],   // first-time visitors see their browser language if listed here
     detect: true,              // false = always start in `default`
   },
 
@@ -37,8 +37,8 @@ window.WEDDING_CONFIG = {
 
   /* ------------------------------------------------------------------ Couple */
   couple: {                                            // PLACEHOLDER
-    first:  { en: 'Bekbolat', ru: 'Бекболат' },
-    second: { en: 'Madina',   ru: 'Мадина' },
+    first:  { en: 'Bekbolat', ru: 'Бекболат', kk: 'Бекболат' },
+    second: { en: 'Madina',   ru: 'Мадина', kk: 'Мадина' },
     hashtag: '',                                       // e.g. '#БекболатИМадина' ('' hides it)
   },
 
@@ -50,7 +50,7 @@ window.WEDDING_CONFIG = {
     // 'Asia/Almaty', 'America/New_York'.
     start: '2027-03-20T19:00',
     timeZone: 'Asia/Atyrau',                         // Atyrau, UTC+5
-    placeLabel: { en: 'Atyrau, Kazakhstan', ru: 'Атырау, Казахстан' },
+    placeLabel: { en: 'Atyrau, Kazakhstan', ru: 'Атырау, Казахстан', kk: 'Атырау, Қазақстан' },
   },
 
   /* ------------------------------------------------------------------ Images */
@@ -69,12 +69,13 @@ window.WEDDING_CONFIG = {
 
   /* -------------------------------------------------------------- Invitation */
   hero: {
-    line: { en: 'We are getting married', ru: 'Мы женимся' },                       // PLACEHOLDER
+    line: { en: 'We are getting married', ru: 'Мы женимся', kk: 'Біз үйленеміз' },                       // PLACEHOLDER
   },
   invitation: {                                                                    // PLACEHOLDER
     heading: {
       en: 'Together with our families, we joyfully invite you to *celebrate our wedding*.',
       ru: 'Вместе с нашими семьями мы с радостью приглашаем вас *отпраздновать нашу свадьбу*.',
+      kk: 'Отбасыларымызбен бірге сіздерді *үйлену тойымызға* қуана шақырамыз.',
     },
     body: {
       en: [
@@ -85,8 +86,12 @@ window.WEDDING_CONFIG = {
         'Нет людей, с которыми нам хотелось бы разделить этот день больше, чем с вами. Приходите на церемонию, оставайтесь на ужин и танцуйте с нами до самого вечера.',
         'Всё, что нужно знать, собрано ниже. Пожалуйста, сообщите нам, сможете ли вы быть с нами.',
       ],
+      kk: [
+        'Бұл күнді сіздерден артық ешкіммен бөліскіміз келмейді. Неке қию рәсіміне келіңіздер, кешкі асқа қалыңыздар және кеш бойы бізбен бірге билеңіздер.',
+        'Қажетті ақпараттың бәрі төменде. Келетіндеріңізді бізге хабарлаңыздар.',
+      ],
     },
-    signoff: { en: 'With all our love,', ru: 'С любовью,' },
+    signoff: { en: 'With all our love,', ru: 'С любовью,', kk: 'Сүйіспеншілікпен,' },
   },
 
   /* ------------------------------------------------------------------- Story */
@@ -125,35 +130,37 @@ window.WEDDING_CONFIG = {
   // glass, camera, dinner, music, heart, sparkle.
   schedule: [                                                                      // PLACEHOLDER
     { time: '15:30', icon: 'arrival',
-      title: { en: 'Arrival',  ru: 'Встреча гостей' },
+      title: { en: 'Arrival',  ru: 'Встреча гостей', kk: 'Қонақтарды қарсы алу' },
       text:  { en: 'Find your seat and take in the garden. Welcome drinks are served.',
-               ru: 'Занимайте места и осматривайтесь. Мы угощаем гостей приветственными напитками.' } },
+               ru: 'Занимайте места и осматривайтесь. Мы угощаем гостей приветственными напитками.', kk: 'Орындарыңызды алып, төңіректі тамашалаңыз. Қонақтарға қарсы алу сусындары беріледі.' } },
     { time: '16:00', icon: 'rings',
-      title: { en: 'Ceremony', ru: 'Церемония' },
+      title: { en: 'Ceremony', ru: 'Церемония', kk: 'Неке қию рәсімі' },
       text:  { en: 'We exchange our vows, surrounded by the people we love most.',
-               ru: 'Мы произносим клятвы в окружении самых близких людей.' } },
+               ru: 'Мы произносим клятвы в окружении самых близких людей.', kk: 'Ең жақын адамдарымыздың алдында ант береміз.' } },
     { time: '17:00', icon: 'glass',
-      title: { en: 'Cocktail hour', ru: 'Коктейли' },
+      title: { en: 'Cocktail hour', ru: 'Коктейли', kk: 'Коктейль' },
       text:  { en: 'Drinks, music and family portraits on the lawn.',
-               ru: 'Напитки, музыка и семейные фотографии на лужайке.' } },
+               ru: 'Напитки, музыка и семейные фотографии на лужайке.', kk: 'Көгалда сусындар, музыка және отбасылық суреттер.' } },
     { time: '19:00', icon: 'dinner',
-      title: { en: 'Dinner', ru: 'Ужин' },
+      title: { en: 'Dinner', ru: 'Ужин', kk: 'Кешкі ас' },
       text:  { en: 'One long table, shared plates and a few short speeches.',
-               ru: 'Один длинный стол, блюда на всех и несколько коротких тостов.' } },
+               ru: 'Один длинный стол, блюда на всех и несколько коротких тостов.', kk: 'Ұзын үстел, ортақ тағамдар және бірнеше қысқа тост.' } },
     { time: '21:00', icon: 'music',
-      title: { en: 'First dance and music', ru: 'Первый танец и музыка' },
+      title: { en: 'First dance and music', ru: 'Первый танец и музыка', kk: 'Алғашқы би және музыка' },
       text:  { en: 'The dance floor opens. Comfortable shoes recommended.',
-               ru: 'Открываем танцпол. Удобная обувь приветствуется.' } },
+               ru: 'Открываем танцпол. Удобная обувь приветствуется.', kk: 'Би алаңы ашылады. Ыңғайлы аяқ киім киген жөн.' } },
     { time: '23:30', icon: 'sparkle',
-      title: { en: 'Farewell', ru: 'Прощание' },
+      title: { en: 'Farewell', ru: 'Прощание', kk: 'Қоштасу' },
       text:  { en: 'Sparklers, a last song and a ride home.',
-               ru: 'Бенгальские огни, последняя песня и дорога домой.' } },
+               ru: 'Бенгальские огни, последняя песня и дорога домой.', kk: 'Бенгал оттары, соңғы ән және үйге жол.' } },
   ],
 
   /* ------------------------------------------------------------------- Venue */
   venue: {                                                                         // PLACEHOLDER (all of it)
-    name: { en: 'Luxury Hall', ru: 'Luxury Hall' },
-    addressLines: ['Атырау, Казахстан'],     // the 2GIS link below is shown as the exact address
+    name: { en: 'Luxury Hall', ru: 'Luxury Hall', kk: 'Luxury Hall' },
+    // Shown on the page, per language. Add the street address here when you have it.
+    address: { en: 'Atyrau, Kazakhstan', ru: 'Атырау, Казахстан', kk: 'Атырау, Қазақстан' },
+    addressLines: ['Атырау, Казахстан'],     // used only to build map searches when mapQuery is empty
     // What the "Get directions" buttons search for. Leave '' to use the address
     // above. Latitude/longitude ("48.8584,2.2945") gives the most exact pin.
     mapQuery: '47.114275,51.852525',   // latitude,longitude of Luxury Hall (from 2GIS)
@@ -169,17 +176,19 @@ window.WEDDING_CONFIG = {
     text: {
       en: 'Garden formal. Soft, natural tones in linen and silk. Please leave white and ivory to the bride.',
       ru: 'Элегантный садовый стиль. Мягкие природные тона, лён и шёлк. Просим оставить белый и айвори невесте.',
+      kk: 'Бақша стиліндегі сәнді киім. Жұмсақ табиғи реңктер, зығыр мен жібек. Ақ және айвори түстерді қалыңдыққа қалдыруларыңызды сұраймыз.',
     },
     note: {
       en: 'The ceremony is on grass, so flat shoes or block heels are kindest.',
       ru: 'Церемония пройдёт на траве, поэтому лучше выбрать плоскую подошву или устойчивый каблук.',
+      kk: 'Рәсім шөпте өтеді, сондықтан тегіс табанды немесе орнықты өкшелі аяқ киім таңдаған жөн.',
     },
     palette: [
-      { hex: '#A5AA96', name: { en: 'Sage',  ru: 'Шалфей' } },
-      { hex: '#41483A', name: { en: 'Olive', ru: 'Олива' } },
-      { hex: '#D9C7AE', name: { en: 'Sand',  ru: 'Песок' } },
-      { hex: '#B98E7A', name: { en: 'Clay',  ru: 'Глина' } },
-      { hex: '#7C8776', name: { en: 'Moss',  ru: 'Мох' } },
+      { hex: '#A5AA96', name: { en: 'Sage',  ru: 'Шалфей', kk: 'Шалфей' } },
+      { hex: '#41483A', name: { en: 'Olive', ru: 'Олива', kk: 'Зәйтүн' } },
+      { hex: '#D9C7AE', name: { en: 'Sand',  ru: 'Песок', kk: 'Құм' } },
+      { hex: '#B98E7A', name: { en: 'Clay',  ru: 'Глина', kk: 'Саз' } },
+      { hex: '#7C8776', name: { en: 'Moss',  ru: 'Мох', kk: 'Мүк' } },
     ],
   },
 
@@ -204,6 +213,7 @@ window.WEDDING_CONFIG = {
     message: {
       en: 'Thank you for being part of our story. We cannot wait to celebrate with you.',
       ru: 'Спасибо, что вы часть нашей истории. Мы очень ждём встречи с вами.',
+      kk: 'Біздің тарихымыздың бір бөлігі болғандарыңызға рахмет. Сіздермен кездесуді асыға күтеміз.',
     },
   },
 };
