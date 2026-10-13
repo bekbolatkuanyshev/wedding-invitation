@@ -192,7 +192,7 @@
       '<path class="map-road2" d="M0 190 L840 170"/><path class="map-road2" d="M120 -10 L170 330"/><path class="map-road2" d="M450 -10 L470 330"/><path class="map-road2" d="M740 -10 L700 330"/><path class="map-road2" d="M0 40 L840 30"/></g>' +
       '<g transform="translate(420 118)"><path class="map-pin" d="M0 -48C-18 -48 -30 -35 -30 -19C-30 5 0 34 0 34S30 5 30 -19C30 -35 18 -48 0 -48Z"/><circle class="map-pin-dot" cy="-19" r="10"/></g></svg>' +
       '<div class="map-label"><span>' + esc(t.venue.mapPreview) + '</span><span>' + esc(t.venue.openMap) + '</span></div>';
-    return '<a class="map rv" href="' + esc(urls.google) + '" target="_blank" rel="noopener" aria-label="' + esc(t.venue.openMap + ': ' + tx(v.name)) + '">' + inner + '</a>';
+    return '<a class="map rv" href="' + esc(urls.twogis || urls.google) + '" target="_blank" rel="noopener" aria-label="' + esc(t.venue.openMap + ': ' + tx(v.name)) + '">' + inner + '</a>';
   }
 
   function venue() {
@@ -203,12 +203,14 @@
         '<div class="venue-photo"><div class="frame rv"><img src="' + esc(img('venue')) + '" alt="" loading="lazy" decoding="async" data-par="0.08"></div></div>' +
         '<div class="venue-info rv" data-d="1"><p class="kicker">' + esc(t.venue.kicker) + '</p>' +
           '<h2 class="venue-name" id="venue-h">' + esc(tx(v.name)) + '</h2>' +
-          '<dl class="facts"><div><dt>' + esc(t.venue.address) + '</dt><dd><address>' + addr + '</address></dd></div>' +
+          '<dl class="facts"><div><dt>' + esc(t.venue.address) + '</dt><dd><address>' + addr + '</address>' +
+            (urls.twogis ? '<a class="addr-link" href="' + esc(urls.twogis) + '" target="_blank" rel="noopener">' + esc(t.venue.twogis) + ' &rarr;</a>' : '') + '</dd></div>' +
           '<div><dt>' + esc(t.venue.date) + '</dt><dd>' + esc(fullDate()) + '</dd></div>' +
           '<div><dt>' + esc(t.venue.time) + '</dt><dd>' + esc(startTime()) + '</dd></div></dl>' +
-          '<div class="btns"><a class="btn" href="' + esc(urls.google) + '" target="_blank" rel="noopener">' + esc(t.venue.directions) + ' · ' + esc(t.venue.google) + '</a>' +
-          '<a class="btn btn--ghost" href="' + esc(urls.apple) + '" target="_blank" rel="noopener">' + esc(t.venue.apple) + '</a>' +
-          (urls.twogis ? '<a class="btn btn--ghost" href="' + esc(urls.twogis) + '" target="_blank" rel="noopener">2GIS</a>' : '') + '</div>' +
+          '<div class="btns">' +
+          (urls.twogis ? '<a class="btn" href="' + esc(urls.twogis) + '" target="_blank" rel="noopener">' + esc(t.venue.directions) + ' · 2GIS</a>' : '') +
+          '<a class="btn' + (urls.twogis ? ' btn--ghost' : '') + '" href="' + esc(urls.google) + '" target="_blank" rel="noopener">' + (urls.twogis ? '' : esc(t.venue.directions) + ' · ') + esc(t.venue.google) + '</a>' +
+          '<a class="btn btn--ghost" href="' + esc(urls.apple) + '" target="_blank" rel="noopener">' + esc(t.venue.apple) + '</a></div>' +
         '</div></div>' + mapPreview(urls) + '</div></section>';
   }
 
@@ -247,7 +249,7 @@
   function rsvpForm() {
     var t = T().rsvp, r = state.rsvp, v = r.values, e = r.errors, f = t.fields;
     var max = C.rsvp.maxGuests || 1, opts = '';
-    for (var i = 1; i <= max; i++) opts += '<option value="' + i + '"' + (String(v.guests) === String(i) ? ' selected' : '') + '>' + i + '</option>';
+    for (var i = 1; i <= max; i++) opts += '<option value="' + i + '"' + (String(v.guests) === String(i) ? ' selected' : '') + '>' + esc(max === 2 && f.guestOne ? (i === 1 ? f.guestOne : f.guestTwo) : String(i)) + '</option>';
     var busy = r.status === 'submitting';
     var errKeys = Object.keys(e);
     var banner = !C.rsvp.endpoint ? '<p class="note" id="rsvp-banner">' + esc(t.previewBanner) + '</p>' : '';

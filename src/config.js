@@ -154,7 +154,7 @@ window.WEDDING_CONFIG = {
   /* ------------------------------------------------------------------- Venue */
   venue: {                                                                         // PLACEHOLDER (all of it)
     name: { en: 'Luxury Hall', ru: 'Luxury Hall' },
-    addressLines: ['Атырау', 'Казахстан'],   // TODO: add street address when known
+    addressLines: ['Атырау, Казахстан'],     // the 2GIS link below is shown as the exact address
     // What the "Get directions" buttons search for. Leave '' to use the address
     // above. Latitude/longitude ("48.8584,2.2945") gives the most exact pin.
     mapQuery: '47.114275,51.852525',   // latitude,longitude of Luxury Hall (from 2GIS)
@@ -187,21 +187,18 @@ window.WEDDING_CONFIG = {
   /* -------------------------------------------------------------------- RSVP */
   rsvp: {
     deadline: '2027-03-01',     // PLACEHOLDER  last day to reply (YYYY-MM-DD, venue time zone)
-    maxGuests: 4,               // largest party one reply can cover
+    maxGuests: 2,               // 2 = "alone" or "with a partner" (labels in strings.js); more shows numbers
     // Where replies are sent. Leave '' until you connect a service: the form
     // will then say plainly that nothing was saved. See README, "Collecting
     // RSVPs", for Formspree / Google Apps Script / your own server.
     endpoint: '',
     format: 'json',             // 'json' or 'form' (urlencoded; simplest for Apps Script)
-    dietary: true,              // show the dietary field
-    message: true,              // show the message field
+    dietary: false,             // show the dietary field
+    message: false,             // show the message field
   },
 
   /* ----------------------------------------------------------------- Contact */
-  contacts: [                                                                      // PLACEHOLDER
-    { type: 'email', label: { en: 'Email', ru: 'Эл. почта' }, value: 'hello@example.com' },
-    { type: 'tel',   label: { en: 'Phone', ru: 'Телефон' },   value: '+00 000 000 0000' },
-  ],
+  contacts: [],   // no contact block; add { type: 'tel', label: {...}, value: '...' } items to show one
 
   /* ----------------------------------------------------------------- Closing */
   closing: {
