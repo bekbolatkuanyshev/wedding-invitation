@@ -61,7 +61,6 @@ window.WEDDING_CONFIG = {
     story1:  'images/story1.svg',
     story2:  'images/story2.svg',
     story3:  'images/story3.svg',
-    venue:   'images/venue.svg',
     dress:   'images/dress.svg',
     closing: 'images/closing.svg',
   },

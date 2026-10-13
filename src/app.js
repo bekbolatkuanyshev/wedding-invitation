@@ -176,42 +176,27 @@
       '<ol class="tl">' + items + '</ol></div></section>';
   }
 
-  function mapPreview(urls) {
-    var t = T(), v = C.venue;
-    var inner;
-    if (v.mapEmbedUrl) {
-      inner = '<iframe src="' + esc(v.mapEmbedUrl) + '" title="' + esc(tx(v.name)) + '" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>';
-      return '<div class="map rv">' + inner + '</div>';
-    }
-    inner = '<svg class="map-svg" viewBox="0 0 840 320" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">' +
-      '<rect class="map-land" width="840" height="320"/>' +
-      '<path class="map-park" d="M470 40 L690 20 L740 140 L560 180 L470 120 Z"/>' +
-      '<path class="map-park" d="M60 200 L210 170 L260 300 L90 310 Z"/>' +
-      '<path class="map-water" d="M-20 250 C140 210 260 300 400 250 S660 190 880 260"/>' +
-      '<g><path class="map-road" d="M0 120 L840 90"/><path class="map-road" d="M300 -10 L360 330"/><path class="map-road" d="M620 -10 L560 330"/>' +
-      '<path class="map-road2" d="M0 190 L840 170"/><path class="map-road2" d="M120 -10 L170 330"/><path class="map-road2" d="M450 -10 L470 330"/><path class="map-road2" d="M740 -10 L700 330"/><path class="map-road2" d="M0 40 L840 30"/></g>' +
-      '<g transform="translate(420 118)"><path class="map-pin" d="M0 -48C-18 -48 -30 -35 -30 -19C-30 5 0 34 0 34S30 5 30 -19C30 -35 18 -48 0 -48Z"/><circle class="map-pin-dot" cy="-19" r="10"/></g></svg>' +
-      '<div class="map-label"><span>' + esc(t.venue.mapPreview) + '</span><span>' + esc(t.venue.openMap) + '</span></div>';
-    return '<a class="map rv" href="' + esc(urls.twogis || urls.google) + '" target="_blank" rel="noopener" aria-label="' + esc(t.venue.openMap + ': ' + tx(v.name)) + '">' + inner + '</a>';
-  }
-
   function venue() {
     var t = T(), v = C.venue, urls = Lib.directionsUrls(v);
-    var addr = v.addressLines.map(esc).join('<br>');
-    return '<section class="sec venue" id="venue" aria-labelledby="venue-h"><div class="wrap">' +
-      '<div class="venue-grid">' +
-        '<div class="venue-photo"><div class="frame rv"><img src="' + esc(img('venue')) + '" alt="" loading="lazy" decoding="async" data-par="0.08"></div></div>' +
-        '<div class="venue-info rv" data-d="1"><p class="kicker">' + esc(t.venue.kicker) + '</p>' +
-          '<h2 class="venue-name" id="venue-h">' + esc(tx(v.name)) + '</h2>' +
-          '<dl class="facts"><div><dt>' + esc(t.venue.address) + '</dt><dd><address>' + addr + '</address>' +
-            (urls.twogis ? '<a class="addr-link" href="' + esc(urls.twogis) + '" target="_blank" rel="noopener">' + esc(t.venue.twogis) + ' &rarr;</a>' : '') + '</dd></div>' +
-          '<div><dt>' + esc(t.venue.date) + '</dt><dd>' + esc(fullDate()) + '</dd></div>' +
-          '<div><dt>' + esc(t.venue.time) + '</dt><dd>' + esc(startTime()) + '</dd></div></dl>' +
-          '<div class="btns">' +
-          (urls.twogis ? '<a class="btn" href="' + esc(urls.twogis) + '" target="_blank" rel="noopener">' + esc(t.venue.directions) + ' · 2GIS</a>' : '') +
-          '<a class="btn' + (urls.twogis ? ' btn--ghost' : '') + '" href="' + esc(urls.google) + '" target="_blank" rel="noopener">' + (urls.twogis ? '' : esc(t.venue.directions) + ' · ') + esc(t.venue.google) + '</a>' +
-          '<a class="btn btn--ghost" href="' + esc(urls.apple) + '" target="_blank" rel="noopener">' + esc(t.venue.apple) + '</a></div>' +
-        '</div></div>' + mapPreview(urls) + '</div></section>';
+    var main = urls.twogis || urls.google;
+    var day = evFmt({ day: 'numeric' }).format(eventMs);
+    var weekday = evFmt({ weekday: 'long' }).format(eventMs);
+    var sub = weekday + ', ' + fill(t.venue.startsAt, { time: startTime() });
+    var pin = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-6.5-5.6-6.5-11a6.5 6.5 0 0 1 13 0c0 5.4-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
+    var more = urls.twogis
+      ? '<p class="vc-alt"><a href="' + esc(urls.google) + '" target="_blank" rel="noopener">' + esc(t.venue.google) + '</a><a href="' + esc(urls.apple) + '" target="_blank" rel="noopener">' + esc(t.venue.apple) + '</a></p>'
+      : '<p class="vc-alt"><a href="' + esc(urls.apple) + '" target="_blank" rel="noopener">' + esc(t.venue.apple) + '</a></p>';
+    return '<section class="sec venue" id="venue" aria-label="' + esc(t.venue.date + ' / ' + t.venue.kicker) + '"><div class="wrap vc-grid">' +
+      '<article class="vc rv"><div class="vc-ico vc-ico--num" aria-hidden="true">' + esc(day) + '</div>' +
+        '<div class="vc-body"><p class="vc-label">' + esc(t.venue.date) + '</p>' +
+        '<h2 class="vc-title"><time datetime="' + esc(C.event.start) + '">' + esc(longDate()) + '</time></h2>' +
+        '<p class="vc-sub">' + esc(sub) + '</p></div></article>' +
+      '<article class="vc rv" data-d="1"><div class="vc-ico" aria-hidden="true">' + pin + '</div>' +
+        '<div class="vc-body"><p class="vc-label">' + esc(t.venue.kicker) + '</p>' +
+        '<h2 class="vc-title">' + esc(tx(v.name)) + '</h2>' +
+        ((v.addressLines && v.addressLines.length) ? '<p class="vc-sub">' + v.addressLines.map(esc).join(', ') + '</p>' : '') +
+        '<a class="vc-link" href="' + esc(main) + '" target="_blank" rel="noopener">' + esc(urls.twogis ? t.venue.twogis : t.venue.openMap) + '</a>' + more + '</div></article>' +
+    '</div></section>';
   }
 
   function dressCode() {
