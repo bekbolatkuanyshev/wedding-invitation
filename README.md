@@ -22,7 +22,7 @@ Edit **`src/config.js`**. Everything marked `// PLACEHOLDER` is demonstration co
 | Names, hashtag | `couple` |
 | Date, time, **time zone** (IANA name, e.g. `Asia/Almaty`) | `event` |
 | Invitation text, story, schedule, dress code, closing | `invitation`, `story`, `schedule`, `dressCode`, `closing` |
-| Venue name, address, map destination | `venue` |
+| Venue name, address, map destination (`mapQuery`, optional `twoGisUrl` button) | `venue` |
 | RSVP deadline, max party size, endpoint | `rsvp` |
 | Contacts | `contacts` |
 | Photos | `images` |

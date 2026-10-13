@@ -29,7 +29,7 @@ window.WEDDING_CONFIG = {
   sections: {
     story: false,       // "Our story" - off until the couple's real story is added
     countdown: true,
-    schedule: true,
+    schedule: false,      // off until the real programme is added
     venue: true,
     dressCode: true,
     rsvp: true,
@@ -48,9 +48,9 @@ window.WEDDING_CONFIG = {
     // The countdown converts it using `timeZone`, so it is correct for every
     // visitor wherever they are. Use an IANA name such as 'Europe/Paris',
     // 'Asia/Almaty', 'America/New_York'.
-    start: '2027-03-20T16:00',                         // DATE confirmed; TIME 16:00 is a PLACEHOLDER
-    timeZone: 'Asia/Atyrau',                         // ASSUMED (UTC+5); confirm the venue city
-    placeLabel: { en: 'City, Kazakhstan', ru: 'Город, Казахстан' },  // PLACEHOLDER
+    start: '2027-03-20T19:00',
+    timeZone: 'Asia/Atyrau',                         // Atyrau, UTC+5
+    placeLabel: { en: 'Atyrau, Kazakhstan', ru: 'Атырау, Казахстан' },
   },
 
   /* ------------------------------------------------------------------ Images */
@@ -153,11 +153,12 @@ window.WEDDING_CONFIG = {
 
   /* ------------------------------------------------------------------- Venue */
   venue: {                                                                         // PLACEHOLDER (all of it)
-    name: { en: 'The Garden Hall', ru: 'The Garden Hall' },
-    addressLines: ['Street Address 00', 'City, Postal Code', 'Country'],
+    name: { en: 'Luxury Hall', ru: 'Luxury Hall' },
+    addressLines: ['Атырау', 'Казахстан'],   // TODO: add street address when known
     // What the "Get directions" buttons search for. Leave '' to use the address
     // above. Latitude/longitude ("48.8584,2.2945") gives the most exact pin.
-    mapQuery: '',
+    mapQuery: '47.114275,51.852525',   // latitude,longitude of Luxury Hall (from 2GIS)
+    twoGisUrl: 'https://2gis.kz/atyrau/geo/70000001096994105/51.852525,47.114275',   // optional 2GIS button
     // Optional: paste a Google Maps "Embed a map" URL to show a live map on your
     // own hosting. Leave '' for the built-in map preview (embeds do not load
     // inside claude.ai artifacts).

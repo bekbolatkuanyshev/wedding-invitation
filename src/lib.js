@@ -143,6 +143,7 @@
     return {
       google: 'https://www.google.com/maps/dir/?api=1&destination=' + enc,
       apple: 'https://maps.apple.com/?daddr=' + enc,
+      twogis: venue.twoGisUrl || '',
       query: q,
     };
   }

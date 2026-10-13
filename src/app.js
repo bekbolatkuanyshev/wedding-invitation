@@ -207,7 +207,8 @@
           '<div><dt>' + esc(t.venue.date) + '</dt><dd>' + esc(fullDate()) + '</dd></div>' +
           '<div><dt>' + esc(t.venue.time) + '</dt><dd>' + esc(startTime()) + '</dd></div></dl>' +
           '<div class="btns"><a class="btn" href="' + esc(urls.google) + '" target="_blank" rel="noopener">' + esc(t.venue.directions) + ' · ' + esc(t.venue.google) + '</a>' +
-          '<a class="btn btn--ghost" href="' + esc(urls.apple) + '" target="_blank" rel="noopener">' + esc(t.venue.apple) + '</a></div>' +
+          '<a class="btn btn--ghost" href="' + esc(urls.apple) + '" target="_blank" rel="noopener">' + esc(t.venue.apple) + '</a>' +
+          (urls.twogis ? '<a class="btn btn--ghost" href="' + esc(urls.twogis) + '" target="_blank" rel="noopener">2GIS</a>' : '') + '</div>' +
         '</div></div>' + mapPreview(urls) + '</div></section>';
   }
 
