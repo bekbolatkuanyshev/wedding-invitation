@@ -1,6 +1,6 @@
 /**
  * INTERFACE TEXT, one block per language.
- * Wedding-specific wording (invitation, story, schedule...) lives in config.js.
+ * Event-specific wording (invitation, story, schedule...) lives in config.js.
  * Placeholders in {braces} are filled in by the page.
  * Plural forms follow Intl.PluralRules for that language
  * (English: one/other. Russian: one/few/many/other).
@@ -12,17 +12,17 @@ window.WEDDING_STRINGS = {
     short: 'ENG',
     locale: 'en-GB',
     meta: {
-      title: '{first} & {second} · Wedding invitation',
-      description: 'You are invited to the wedding of {first} and {second} on {date}. Schedule, venue, dress code and RSVP.',
+      title: '{first} & {second} · Syrga salu invitation',
+      description: 'You are invited to the syrga salu ceremony of {first} and {second} on {date}. Venue, time and RSVP.',
     },
     nav: { skip: 'Skip to content', home: 'Back to top', language: 'Language', rsvp: 'RSVP' },
     hero: { scroll: 'Scroll to the invitation' },
-    intro: { kicker: 'Wedding invitation', hint: 'Tap to open', aria: 'Open the invitation' },
+    intro: { kicker: 'Syrga salu invitation', hint: 'Tap to open', aria: 'Open the invitation' },
     invitation: { kicker: 'The invitation' },
     story: { kicker: 'Our story', title: 'How we got here' },
     countdown: {
       kicker: 'The countdown',
-      title: 'Until we say *I do*',
+      title: 'Until our *celebration*',
       zone: 'Counting down to {date}, {time} ({zone})',
       done: 'Today is the day',
       doneSub: 'Thank you for celebrating with us.',
@@ -44,6 +44,7 @@ window.WEDDING_STRINGS = {
       google: 'Google Maps',
       apple: 'Apple Maps',
       twogis: 'Open in 2GIS',
+      addToCalendar: 'Add to calendar',
       startsAt: 'starts at {time}',
       mapPreview: 'Map preview',
       openMap: 'Open in Maps',
@@ -107,17 +108,17 @@ window.WEDDING_STRINGS = {
     short: 'РУС',
     locale: 'ru-RU',
     meta: {
-      title: '{first} и {second} · Свадебное приглашение',
-      description: 'Приглашаем вас на свадьбу {first} и {second}, {date}. Программа, место, дресс-код и подтверждение участия.',
+      title: '{first} и {second} · Приглашение на сырга салу',
+      description: 'Приглашаем вас на сырга салу: {first} и {second}, {date}. Место, время и подтверждение участия.',
     },
     nav: { skip: 'Перейти к содержимому', home: 'Наверх', language: 'Язык', rsvp: 'Ответить' },
     hero: { scroll: 'Прокрутите к приглашению' },
-    intro: { kicker: 'Свадебное приглашение', hint: 'Нажмите, чтобы открыть', aria: 'Открыть приглашение' },
+    intro: { kicker: 'Приглашение на сырга салу', hint: 'Нажмите, чтобы открыть', aria: 'Открыть приглашение' },
     invitation: { kicker: 'Приглашение' },
     story: { kicker: 'Наша история', title: 'Как всё *началось*' },
     countdown: {
       kicker: 'Обратный отсчёт',
-      title: 'До слов *«Да»*',
+      title: 'До нашего *торжества*',
       zone: 'До {date}, {time} ({zone})',
       done: 'Этот день настал',
       doneSub: 'Спасибо, что празднуете с нами.',
@@ -139,6 +140,7 @@ window.WEDDING_STRINGS = {
       google: 'Google Карты',
       apple: 'Apple Карты',
       twogis: 'Открыть в 2GIS',
+      addToCalendar: 'Добавить в календарь',
       startsAt: 'начало в {time}',
       mapPreview: 'Схема',
       openMap: 'Открыть на карте',
@@ -205,17 +207,17 @@ window.WEDDING_STRINGS = {
     weekdays: ['жексенбі', 'дүйсенбі', 'сейсенбі', 'сәрсенбі', 'бейсенбі', 'жұма', 'сенбі'],   // Sunday first
     dateFormat: '{d} {month} {y} ж.',
     meta: {
-      title: '{first} & {second} · Үйлену тойына шақыру',
-      description: 'Сіздерді {first} мен {second} үйлену тойына шақырамыз, {date}. Бағдарлама, өтетін орны, киім үлгісі және қатысуды растау.',
+      title: '{first} & {second} · Сырға салуға шақыру',
+      description: 'Сіздерді {first} мен {second} сырға салу рәсіміне шақырамыз, {date}. Өтетін орны, уақыты және қатысуды растау.',
     },
     nav: { skip: 'Мазмұнға өту', home: 'Жоғарыға', language: 'Тіл', rsvp: 'Жауап беру' },
     hero: { scroll: 'Шақыруға қарай жылжытыңыз' },
-    intro: { kicker: 'Үйлену тойына шақыру', hint: 'Ашу үшін басыңыз', aria: 'Шақыруды ашу' },
+    intro: { kicker: 'Сырға салуға шақыру', hint: 'Ашу үшін басыңыз', aria: 'Шақыруды ашу' },
     invitation: { kicker: 'Шақыру' },
     story: { kicker: 'Біздің тарихымыз', title: 'Бәрі қалай *басталды*' },
     countdown: {
       kicker: 'Кері санақ',
-      title: '*«Иә»* дейтін сәтке дейін',
+      title: 'Қуанышты *күнге дейін*',
       zone: '{date}, {time} ({zone}) дейін',
       done: 'Күтілген күн келді',
       doneSub: 'Қуанышымызға ортақ болғандарыңызға рахмет.',
@@ -237,6 +239,7 @@ window.WEDDING_STRINGS = {
       google: 'Google Карталар',
       apple: 'Apple Карталар',
       twogis: '2GIS-те ашу',
+      addToCalendar: 'Күнтізбеге қосу',
       startsAt: 'басталуы {time}',
       mapPreview: 'Сызба',
       openMap: 'Картада ашу',

@@ -216,7 +216,7 @@ a { color: inherit; }
 
 /* ---------------------------------------------------------------- invitation */
 .invite-grid { display: grid; gap: 2.5rem; }
-.sprig { width: 3.5rem; height: auto; color: var(--sage); margin-top: 1.25rem; }
+.orn { width: 5rem; height: auto; color: var(--sage); margin-top: 1.25rem; }
 .invite-title { font-size: clamp(2.05rem, 5.4vw, 4.1rem); line-height: 1.1; }
 .invite-body { display: grid; gap: 1.25rem; max-width: 33rem; margin-top: 2.5rem; color: var(--fg-soft); }
 .invite-sign { margin-top: 3rem; display: grid; gap: 0.2rem; }
@@ -306,6 +306,7 @@ a { color: inherit; }
 .vc-title { margin: 0.2rem 0 0; font: 400 clamp(1.7rem, 6vw, 2.3rem)/1.1 var(--font-display); overflow-wrap: anywhere; }
 .vc-sub { margin: 0.35rem 0 0; color: var(--fg-soft); }
 .vc-link { display: inline-block; margin-top: 0.6rem; padding-block: 0.35rem; color: var(--accent-text); text-underline-offset: 0.25em; }
+.vc-btn { display: block; border: 0; background: none; padding: 0.35rem 0; font: inherit; cursor: pointer; }
 .vc-alt { margin: 0.1rem 0 0; display: flex; flex-wrap: wrap; gap: 0 1.25rem; font-size: 0.9rem; }
 .vc-alt a { color: var(--fg-soft); padding-block: 0.3rem; text-underline-offset: 0.25em; }
 .vc-alt a:hover, .vc-link:hover { color: var(--fg); }
@@ -386,10 +387,11 @@ textarea.input { resize: vertical; min-height: 6.5rem; }
 .closing-media img { position: absolute; left: 0; top: -9%; width: 100%; height: 118%; object-fit: cover; opacity: 0.9; }
 .closing::after { content: ''; position: absolute; inset: 0; z-index: -1; background: radial-gradient(ellipse at center, rgba(12, 15, 9, 0.32), rgba(12, 15, 9, 0.1) 60%, rgba(12, 15, 9, 0.36)); }
 .closing-in { display: grid; justify-items: center; gap: 1.5rem; }
-.rings { width: 6.5rem; height: auto; color: #F8F5EF; }
-.rings circle { fill: none; stroke: currentColor; stroke-width: 1.2; stroke-dasharray: 1; stroke-dashoffset: 1; }
-.closing.in .rings circle { animation: draw 2.6s var(--ease) forwards; }
-.closing.in .rings circle + circle { animation-delay: 0.5s; }
+.earring { width: 4.2rem; height: auto; color: #F8F5EF; }
+.earring * { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.closing.in .earring * { animation: draw 2.4s var(--ease) forwards; }
+.closing.in .earring *:nth-child(n+3) { animation-delay: 0.4s; }
+.closing.in .earring *:nth-child(n+7) { animation-delay: 0.8s; }
 .closing .kicker { color: #d6dac6; margin: 0; }
 .closing-msg { font: italic 300 clamp(1.4rem, 3.6vw, 2.2rem)/1.35 var(--font-display); max-width: 30rem; text-wrap: balance; }
 .closing-names { font-size: clamp(3.4rem, 14vw, 9.5rem); line-height: 0.92; letter-spacing: -0.01em; }
@@ -417,72 +419,66 @@ textarea.input { resize: vertical; min-height: 6.5rem; }
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
   .rv { opacity: 1; transform: none; }
-  .rings circle { stroke-dashoffset: 0; }
+  .earring * { stroke-dashoffset: 0; }
 }
 
 /* ---------------------------------------------------------------- opening envelope */
+/* Flat colours and outlined edges on purpose: no gradients, no shimmer. */
 html.intro-lock { overflow: hidden; }
 html.intro-lock .hero-media, html.intro-lock .hero-line, html.intro-lock .hero-names .nm > span,
 html.intro-lock .hero-names .amp, html.intro-lock .hero-meta, html.intro-lock .scroll { animation-play-state: paused; }
 
 .open {
   position: fixed; inset: 0; z-index: 200; display: grid; place-items: center; padding: 1.5rem;
-  background: radial-gradient(ellipse at 50% 38%, #6f7a65 0%, #55604b 52%, #424b39 100%);
+  background-color: #55604b;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='96' viewBox='0 0 120 96'%3E%3Cg fill='none' stroke='%23f7f1e4' stroke-opacity='.09' stroke-width='1.4' stroke-linecap='round'%3E%3Cpath d='M47 39L35 31C26 28 18 35 19 44C20 52 29 54 32 49C34 45 30 41 27 43'/%3E%3Cpath d='M73 39L85 31C94 28 102 35 101 44C100 52 91 54 88 49C86 45 90 41 93 43'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 120px 96px;
   transition: opacity 0.9s var(--ease), transform 0.9s var(--ease), visibility 0s 0.9s;
 }
 .open.is-leaving { opacity: 0; transform: scale(1.05); visibility: hidden; pointer-events: none; }
 .open-in { display: grid; justify-items: center; gap: 2.25rem; width: 100%; }
 
 .env {
-  --w: min(86vw, 27rem);
-  position: relative; display: block; width: var(--w); aspect-ratio: 3 / 2; padding: 0; border: 0; background: none;
-  cursor: pointer; perspective: 1400px; transform-style: preserve-3d; -webkit-tap-highlight-color: transparent;
-  animation: env-float 5s ease-in-out infinite;
+  position: relative; display: block; width: min(86vw, 27rem); aspect-ratio: 3 / 2; padding: 0; border: 0; background: none;
+  cursor: pointer; perspective: 1400px; transform-style: preserve-3d; -webkit-tap-highlight-color: transparent; color: #3f4836;
 }
-.env::before { content: ''; position: absolute; left: 6%; right: 6%; bottom: -9%; height: 14%; background: rgba(15, 20, 10, 0.5); filter: blur(18px); border-radius: 50%; }
-.env:focus-visible { outline: 2px solid #F8F5EF; outline-offset: 10px; }
-.env > span { position: absolute; }
-.env-back { inset: 0; background: #ddd3bf; border-radius: 3px; z-index: 0; }
+.env::before { content: ''; position: absolute; left: 4%; right: 4%; bottom: -7%; height: 10%; background: rgba(20, 26, 16, 0.4); filter: blur(14px); border-radius: 50%; }
+.env:focus-visible { outline: 2px solid #f7f1e4; outline-offset: 10px; }
+.env > * { position: absolute; }
+.env-back { inset: 0; width: 100%; height: 100%; z-index: 0; overflow: visible; }
 .env-card {
   left: 6%; right: 6%; top: 6%; height: 88%; z-index: 1;
-  display: grid; align-content: start; justify-items: center; gap: 0.1rem; padding: 1rem 0.75rem 0;
-  background: #fbf8f1; color: #2f3628; border-radius: 2px; text-align: center;
-  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  display: grid; align-content: start; justify-items: center; gap: 0.15rem; padding: 0.9rem 0.75rem 0;
+  background: #fffdf8; color: #2f3628; text-align: center; border: 1.6px solid #3f4836;
   transition: transform 1.05s var(--ease) 0.95s;
 }
-.env-card small { font: 400 0.6rem/1.4 var(--font-sans); letter-spacing: 0.26em; text-transform: uppercase; color: #6b705f; }
-.env-card b { font: 300 clamp(1.5rem, 7.2vw, 2.2rem)/1 var(--font-display); font-weight: 400; }
-.env-card i { font: italic 300 1.1rem/1 var(--font-display); color: #7b856c; }
-.env-card em { margin-top: 0.4rem; font: 400 0.62rem/1.4 var(--font-sans); letter-spacing: 0.22em; text-transform: uppercase; font-style: normal; color: #6b705f; }
-.env-front { inset: 0; z-index: 2; background: linear-gradient(180deg, #f2ecde, #eae2d0); clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%); border-radius: 3px; }
+.env-frame { position: absolute; inset: 5px; border: 1px solid #9aa08b; pointer-events: none; }
+.env-card .orn { width: 3.6rem; margin: 0 0 0.1rem; color: #7d8668; }
+.env-card small { font: 400 0.58rem/1.4 var(--font-sans); letter-spacing: 0.26em; text-transform: uppercase; color: #5b6350; }
+.env-card b { font: 400 clamp(1.45rem, 7vw, 2.15rem)/1 var(--font-display); }
+.env-card i { font: italic 300 1.05rem/1 var(--font-display); color: #6b7558; }
+.env-card em { margin-top: 0.35rem; font: 400 0.6rem/1.4 var(--font-sans); letter-spacing: 0.22em; text-transform: uppercase; font-style: normal; color: #5b6350; }
+.env-front { inset: 0; width: 100%; height: 100%; z-index: 2; overflow: visible; }
 .env-flap {
-  left: 0; right: 0; top: 0; height: 56%; z-index: 3; transform-origin: top center;
-  background: linear-gradient(180deg, #f7f2e6, #ece4d2); clip-path: polygon(0 0, 100% 0, 50% 100%);
+  left: 0; top: 0; width: 100%; height: 56%; z-index: 3; transform-origin: top center; overflow: visible;
   transition: transform 0.95s var(--ease) 0.25s, z-index 0s linear 0.65s;
 }
 .env-seal {
   left: 50%; top: 56%; z-index: 4; width: clamp(3.6rem, 17vw, 4.6rem); aspect-ratio: 1; translate: -50% -50%;
-  display: grid; place-items: center; border-radius: 50%; color: #f6ece0;
-  background: radial-gradient(circle at 35% 30%, #c0806c 0%, #9c5946 55%, #7d4333 100%);
-  box-shadow: 0 6px 14px rgba(40, 18, 10, 0.4), inset 0 -3px 6px rgba(60, 25, 15, 0.35), inset 0 2px 3px rgba(255, 220, 200, 0.35);
+  display: grid; place-items: center; color: #fbeee2;
   transition: transform 0.55s var(--ease), opacity 0.4s;
-  animation: seal-pulse 2.8s ease-in-out infinite;
 }
-.env-seal::before { content: ''; position: absolute; inset: 9%; border-radius: 50%; border: 1px solid rgba(255, 232, 215, 0.45); }
-.env-seal span { font: italic 400 clamp(1.05rem, 4.8vw, 1.35rem)/1 var(--font-display); letter-spacing: 0.02em; }
-.open-hint { margin: 0; color: #e6e9da; font: 400 0.72rem/1.4 var(--font-sans); letter-spacing: 0.26em; text-transform: uppercase; transition: opacity 0.4s; animation: fade-up 1s var(--ease) 0.5s both; }
+.env-seal svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.env-seal span { position: relative; font: italic 400 clamp(1.05rem, 4.8vw, 1.3rem)/1 var(--font-display); }
+.open-hint { margin: 0; color: #eef0e2; font: 400 0.72rem/1.4 var(--font-sans); letter-spacing: 0.26em; text-transform: uppercase; transition: opacity 0.4s; animation: fade-up 1s var(--ease) 0.5s both; }
 
-.open.is-open .env { animation: none; }
-.open.is-open .env-seal { transform: scale(0.5) rotate(-12deg); opacity: 0; animation: none; }
+.open.is-open .env-seal { transform: scale(0.5) rotate(-12deg); opacity: 0; }
 .open.is-open .env-flap { transform: rotateX(180deg); z-index: 0; }
-.open.is-open .env-card { transform: translateY(-62%); }
+.open.is-open .env-card { transform: translateY(-64%); }
 .open.is-open .open-hint { opacity: 0; }
 
-@keyframes env-float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-7px); } }
-@keyframes seal-pulse { 0%, 100% { scale: 1; } 50% { scale: 1.06; } }
-
 @media (prefers-reduced-motion: reduce) {
-  .open, .env, .env-seal, .open-hint { animation: none !important; }
+  .open, .open-hint { animation: none !important; }
   .open { transition: opacity 0.25s linear, visibility 0s 0.25s; }
   .open.is-leaving { transform: none; }
   .env-flap, .env-card, .env-seal { transition: none; }

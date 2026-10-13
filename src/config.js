@@ -54,6 +54,7 @@ window.WEDDING_CONFIG = {
     // 'Asia/Almaty', 'America/New_York'.
     start: '2027-03-20T19:00',
     timeZone: 'Asia/Atyrau',                         // Atyrau, UTC+5
+    durationHours: 4,                                // PLACEHOLDER length of the event, used by "Add to calendar"
     placeLabel: { en: 'Atyrau, Kazakhstan', ru: 'Атырау, Казахстан', kk: 'Атырау, Қазақстан' },
   },
 
@@ -73,25 +74,25 @@ window.WEDDING_CONFIG = {
 
   /* -------------------------------------------------------------- Invitation */
   hero: {
-    line: { en: 'We are getting married', ru: 'Мы женимся', kk: 'Біз үйленеміз' },                       // PLACEHOLDER
+    line: { en: 'You are invited to syrga salu', ru: 'Приглашаем на сырга салу', kk: 'Сырға салуға шақырамыз' },                       // PLACEHOLDER
   },
   invitation: {                                                                    // PLACEHOLDER
     heading: {
-      en: 'Together with our families, we joyfully invite you to *celebrate our wedding*.',
-      ru: 'Вместе с нашими семьями мы с радостью приглашаем вас *отпраздновать нашу свадьбу*.',
-      kk: 'Отбасыларымызбен бірге сіздерді *үйлену тойымызға* қуана шақырамыз.',
+      en: 'We joyfully invite you to share *syrga salu* with us, a warm family tradition.',
+      ru: 'С радостью приглашаем вас разделить с нами *сырга салу* — тёплую семейную традицию.',
+      kk: 'Сіздерді отбасылық дәстүріміз — *сырға салу* рәсіміне қуана шақырамыз.',
     },
     body: {
       en: [
-        'There is no one we would rather share this day with. Come for the ceremony, stay for the dinner, and dance with us until the lights go down.',
+        'It means a great deal to have you beside us on this day. Come and share the joy and the warm words with us.',
         'Everything you need to know is below. Please let us know whether you can join us.',
       ],
       ru: [
-        'Нет людей, с которыми нам хотелось бы разделить этот день больше, чем с вами. Приходите на церемонию, оставайтесь на ужин и танцуйте с нами до самого вечера.',
+        'Нам будет особенно приятно видеть вас рядом в этот день. Приходите разделить с нами радость и тёплые слова.',
         'Всё, что нужно знать, собрано ниже. Пожалуйста, сообщите нам, сможете ли вы быть с нами.',
       ],
       kk: [
-        'Бұл күнді сіздерден артық ешкіммен бөліскіміз келмейді. Неке қию рәсіміне келіңіздер, кешкі асқа қалыңыздар және кеш бойы бізбен бірге билеңіздер.',
+        'Бұл күні сіздердің қасымызда болғандарыңыз біз үшін ерекше қуаныш. Қуанышымызға ортақтасып, жылы лебіздеріңізді айтыңыздар.',
         'Қажетті ақпараттың бәрі төменде. Келетіндеріңізді бізге хабарлаңыздар.',
       ],
     },
@@ -178,14 +179,14 @@ window.WEDDING_CONFIG = {
   /* -------------------------------------------------------------- Dress code */
   dressCode: {                                                                     // PLACEHOLDER
     text: {
-      en: 'Garden formal. Soft, natural tones in linen and silk. Please leave white and ivory to the bride.',
-      ru: 'Элегантный садовый стиль. Мягкие природные тона, лён и шёлк. Просим оставить белый и айвори невесте.',
-      kk: 'Бақша стиліндегі сәнді киім. Жұмсақ табиғи реңктер, зығыр мен жібек. Ақ және айвори түстерді қалыңдыққа қалдыруларыңызды сұраймыз.',
+      en: 'Please choose an outfit in calm, natural tones: olive, sand, clay and sage.',
+      ru: 'Просим выбрать наряд в спокойных природных тонах: оливковых, песочных, глиняных, шалфейных.',
+      kk: 'Табиғи сабырлы реңктегі киім таңдауларыңызды сұраймыз: зәйтүн, құм, саз және шалфей түстері.',
     },
     note: {
-      en: 'The ceremony is on grass, so flat shoes or block heels are kindest.',
-      ru: 'Церемония пройдёт на траве, поэтому лучше выбрать плоскую подошву или устойчивый каблук.',
-      kk: 'Рәсім шөпте өтеді, сондықтан тегіс табанды немесе орнықты өкшелі аяқ киім таңдаған жөн.',
+      en: 'Choose what feels comfortable and festive to you.',
+      ru: 'Выбирайте то, в чём вам будет удобно и празднично.',
+      kk: 'Өзіңізге ыңғайлы әрі мерекелік киімді таңдаңыз.',
     },
     palette: [
       { hex: '#A5AA96', name: { en: 'Sage',  ru: 'Шалфей', kk: 'Шалфей' } },
